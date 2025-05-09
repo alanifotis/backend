@@ -7,7 +7,7 @@ class Product(models.Model):
     short_description = models.CharField(max_length=255, null=False)
     product_description = models.TextField(null=True)
     price = models.FloatField(null=False)
-    picture = models.CharField(max_length=255, null=False)
+    image = models.CharField(max_length=255, null=False)
 
     def __str__(self):
         return self.name

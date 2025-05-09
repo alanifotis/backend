@@ -3,11 +3,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
+
 from .models import Product, Stock
 from .serializers import ProductSerializer
 
 @api_view(['GET'])
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def product_list(request):
     products = Product.objects.all()
     serializer = ProductSerializer(products, many=True)
