@@ -1,5 +1,5 @@
 """
-URL configuration for main project.
+URL configuration for django_backend project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -14,12 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from main import views
 from django.contrib import admin
-from django.http import HttpResponse
 from django.urls import path
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("hello/", lambda x: HttpResponse("<h1>hello world</h1>"))
+    path('api/products/<int:pk>/', views.product_detail),
+    path('api/products', views.product_list),
 ]
