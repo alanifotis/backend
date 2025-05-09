@@ -3,16 +3,19 @@ from django.db import models
 # Create your models here.
 
 class Product(models.Model):
-    initial = True
-
-    dependecies = []
-
-    name = models.CharField(max_length=255, null=False,)
-    short_description = models.CharField(max_length=255, null=False,)
+    name = models.CharField(max_length=255, null=False)
+    short_description = models.CharField(max_length=255, null=False)
     product_description = models.TextField(null=True)
-    stock = models.IntegerField(null=False)
     price = models.FloatField(null=False)
-
+    picture = models.CharField(max_length=255, null=False)
 
     def __str__(self):
         return self.name
+
+
+class Stock(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='stock')
+    quantity = models.IntegerField(null=False)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.quantity} in stock"
